@@ -4,6 +4,8 @@ WORKDIR /server
 
 COPY . .
 
+ENV NODE_ENV=production
+
 RUN npm ci --only=production
 RUN npm i -g pm2
 
