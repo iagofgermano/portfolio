@@ -29,7 +29,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-var models = require('./db/models');
 var user = require("./db/models").User;
 
 require('./config/passport/passport.js')(passport, user);
