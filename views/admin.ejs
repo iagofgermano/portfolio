@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="robots" content="noindex">
+	<title>Admin</title>
+	<link rel="stylesheet" href="/stylesheets/styles.css">
+</head>
+<body>
+    New Post
+	<form action="/create-post" method="post">
+		<input type="hidden" name="_csrf" value="<%= csrfToken%>">
+		<div class="mb-6">
+			<label for="title" class="block mb-2 text-sm text-gray-600">Title</label>
+			<input type="text" id="title" name="title" class=" px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" required>
+		  </div>
+		  <div class="mb-6">
+			<label for="content" class="block mb-2 text-sm text-gray-600">Content</label>
+			<textarea id="content" name="content" class="w-1/2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" required></textarea>
+		  </div>
+		  <% for(var i = 0; i < tags.length; i++) {%>
+		  <input id="<%= tags[i]['name'] %>" name="<%= tags[i]['id'] %>" value="<%= tags[i]['id'] %>" type="checkbox" class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-r-cyan-600 checked:bg-cyan-600 checked:before:bg-cyan-600 hover:before:opacity-10"/>
+		  <label class="mt-px cursor-pointer select-none font-light text-gray-700" for="<%= tags[i]['name']%>"><%= tags[i]['name']%></label><br>
+		  <% } %>
+	  </label>
+
+		  <button type="submit" class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mt-4 mb-6">Criar</button>
+	</form>
+	New Tag
+	<form method="post" action="/create-tag">
+		<input type="hidden" name="_csrf" value="<%= csrfToken%>">
+		<div class="mb-6">
+			<label for="name" class="block mb-2 text-sm text-gray-600">Name</label>
+			<input type="text" id="name" name="name" class=" px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" required>
+		</div>  
+		<button type="submit" class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mt-4 mb-6">Criar</button>
+	</form>
+
+	<a href="<%=adminEndpoint%>/posts">Gerenciar Posts</a>
+</body>
+</html>

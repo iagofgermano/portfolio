@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Posts</title>
+</head>
+<body>
+    <form method="post" action="/delete-post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+        <% for(var i = 0; i < posts.length; i++) { %>
+            <input type="checkbox" name="<%=posts[i]['id']%>" id="<%=posts[i]['id']%>" value="<%= posts[i]['id'] %>" type="checkbox" class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-r-cyan-600 checked:bg-cyan-600 checked:before:bg-cyan-600 hover:before:opacity-10">
+            <label class="mt-px cursor-pointer select-none font-light text-gray-700" for="<%= posts[i]['id']%>"><%= posts[i]['title']%></label><br>
+            <p>
+                <%- posts[i]['content'].replace( '\n' , '</p><p>' )%>
+            </p>
+            <hr>
+        <% } %>
+        <button type="submit" class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mt-4 mb-6">Excluir</button>
+    </form>
+</body>
+</html>
