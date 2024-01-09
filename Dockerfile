@@ -6,7 +6,10 @@ COPY . .
 
 ENV NODE_ENV=production
 
-RUN npm ci --only=production
-RUN npm i -g pm2
+ENV PORT 80
 
-CMD ["pm2", "start", "./bin/www"]
+EXPOSE 80
+
+RUN npm ci
+
+CMD ["node", "./bin/www"]
