@@ -40,12 +40,6 @@ var indexRouter = require('./routes/index');
 
 app.use('/', adminRouter, indexRouter);
 
-models.sequelize.sync().then(function() {
-  console.log('Nice! Database looks fine');
-}).catch(function(err) {
-  console.log(err, "Something went wrong with the Database Update!");
-});
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
