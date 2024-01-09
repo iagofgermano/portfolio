@@ -9,4 +9,4 @@ ENV NODE_ENV=production
 RUN npm ci --only=production
 RUN npm i -g pm2
 
-CMD ["pm2", "./bin/www"]
+CMD ["pm2", "start", "./bin/www"]
