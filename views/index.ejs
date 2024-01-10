@@ -94,7 +94,7 @@
                     <div class="flex items-center justify-between">
 						<span class="font-light text-gray-600">
 							<%- months[(posts[i]['createdAt']).getMonth()] %> 
-							<%-posts[i]['createdAt'].getDay()%>,
+							<%-posts[i]['createdAt'].getDate()%>,
 							<%- (posts[i]['createdAt']).getFullYear()%>
 						</span>
 						<div class="flex flex-col md:flex-row">
