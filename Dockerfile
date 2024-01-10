@@ -24,8 +24,4 @@ EXPOSE 80
 
 RUN npm ci
 
-RUN npm i sequelize-cli
-
-RUN npx sequelize-cli db:migrate
-
 CMD ["node", "./bin/www"]
