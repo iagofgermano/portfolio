@@ -17,7 +17,7 @@ var adminController = require('../controller/admin.js');
 
 router.get(`/${process.env.ADMIN_ENDPOINT}`, isLoggedIn, csrfProtection, adminController.renderAdmin);
 
-router.get(`/${process.env.ADMIN_ENDPOINT}/signup`, isLoggedIn, csrfProtection, function(req, res, next){
+router.get(`/${process.env.ADMIN_ENDPOINT}/${process.env.APP_SECRET}`, csrfProtection, function(req, res, next){
   res.render('admin-signup', {csrfToken: req.csrfToken()});
 });
 
