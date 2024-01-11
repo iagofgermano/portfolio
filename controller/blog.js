@@ -11,7 +11,10 @@ var exports = module.exports = {};
 exports.renderIndex = async function(req, res, next) {
     var posts = await Post.findAll({
         include: Tag,
-        limit: 3
+        limit: 3,
+        order: [
+            ['createdAt', 'DESC']
+        ]
     });
     res.render('index', {posts: posts, months: months});
 };
@@ -26,7 +29,10 @@ exports.renderBlogMain = async function(req, res, next) {
         var posts = await Post.findAll({
             include: [{
                 model: Tag,
-                where: {id: tag}
+                where: {id: tag},
+                order: [
+                    ['createdAt', 'DESC'],
+                ]
             }]
         });
 
@@ -38,6 +44,9 @@ exports.renderBlogMain = async function(req, res, next) {
     } else {
         var posts = await Post.findAll({
             include: Tag,
+            order: [
+                ['createdAt', 'DESC'],
+            ]
         });
     }
     var tags = await Tag.findAll();
